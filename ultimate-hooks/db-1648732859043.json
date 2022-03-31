@@ -35,10 +35,6 @@
     {
       "content": "two",
       "id": 9
-    },
-    {
-      "content": "nine",
-      "id": 10
     }
   ],
   "persons": [
@@ -71,11 +67,6 @@
       "name": "aamir",
       "number": "0333",
       "id": 6
-    },
-    {
-      "name": "qsr",
-      "number": "asdasd",
-      "id": 7
     }
   ]
 }
