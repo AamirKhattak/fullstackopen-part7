@@ -9,8 +9,8 @@ router.post("/reset", async (req, res) => {
   res.status(204).end();
 });
 
-router.get("/", (req, res)=>{
-  res.send('hello testing');
-})
+router.get("/", (req, res) => {
+  res.send("hello testing");
+});
 
-module.exports = router
+module.exports = router;

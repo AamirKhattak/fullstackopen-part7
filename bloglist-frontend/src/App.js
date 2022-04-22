@@ -9,15 +9,9 @@ import BlogForm from './components/BlogForm';
 import Notification from './components/Notification';
 import Togglable from './components/Togglable';
 
-/*
-TODO: Modify the application to list the blog posts by the number of likes
-
-
-*/
 const App = () => {
   const [blogs, setBlogs] = useState([]);
   const [user, setUser] = useState(null);
-  const [notification, setNotification] = useState(undefined);
 
   const blogFormRef = useRef();
 
@@ -41,13 +35,6 @@ const App = () => {
     setUser(userDetails);
   };
 
-  const handleNotification = (notification, type = undefined) => {
-    setNotification({ message: notification, type: type });
-    setTimeout(() => {
-      setNotification(undefined);
-    }, 5000);
-  };
-
   const handleLogout = () => {
     setUser(null);
     window.localStorage.removeItem('loggedInUser');
@@ -57,8 +44,8 @@ const App = () => {
     return (
       <div>
         <h1>Login into application</h1>
-        <Notification notification={notification} />
-        <Login onLogin={onLogin} handleNotification={handleNotification} />
+        <Notification />
+        <Login onLogin={onLogin} />
       </div>
     );
   }
@@ -69,12 +56,12 @@ const App = () => {
       setBlogs(blogs.concat(responseNewBlog));
       blogFormRef.current.toggleVisibility();
 
-      handleNotification(
-        `a new blog ${responseNewBlog.title} by ${responseNewBlog.author} added.`,
-        'success'
-      );
+      // handleNotification(
+      //   `a new blog ${responseNewBlog.title} by ${responseNewBlog.author} added.`,
+      //   'success'
+      // );
     } catch (error) {
-      handleNotification(error.message);
+      // handleNotification(error.message);
     }
   };
 
@@ -110,7 +97,7 @@ const App = () => {
   return (
     <div>
       <h2>blogs</h2>
-      <Notification notification={notification} />
+      <Notification />
       <p>
         {user.name} logged in <button onClick={handleLogout}>logout</button>
       </p>

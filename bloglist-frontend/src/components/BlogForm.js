@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../reducers/notificationReducer';
+
 
 export default function BlogForm({ onBlogFormSubmit }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setURL] = useState('');
 
+  const dispatch = useDispatch();
+
   const handleCreate = async (event) => {
     event.preventDefault();
     const newBlog = { title, author, url };
+    dispatch(setNotification(`a new blog "${title}" by "${author}" added.`));
     onBlogFormSubmit(newBlog);
     setTitle('');
     setAuthor('');
@@ -53,7 +59,9 @@ export default function BlogForm({ onBlogFormSubmit }) {
             onChange={({ target }) => setURL(target.value)}
           />
         </div>
-        <button id='create-btn' type='submit'>create</button>
+        <button id="create-btn" type="submit">
+          create
+        </button>
       </form>
     </div>
   );

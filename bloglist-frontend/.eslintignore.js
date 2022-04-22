@@ -1,4 +1,3 @@
-cypress
-node_modules
-build
-.eslintrc.js
+cypress;
+node_modules;
+build.eslintrc.js;

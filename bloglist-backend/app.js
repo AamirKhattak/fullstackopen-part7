@@ -20,7 +20,6 @@ mongoose
   .catch((error) => {
     logger.error("error connection to MongoDB:", error.message);
   });
-
 // ###########################################################<start> MORGAN
 // LOGGING using tiny config, for all methods except POST
 app.use(
@@ -32,6 +31,7 @@ app.use(
 morgan.token("body", (req) => {
   return JSON.stringify(req.body);
 });
+
 //only to log POST requests
 app.use(
   morgan(

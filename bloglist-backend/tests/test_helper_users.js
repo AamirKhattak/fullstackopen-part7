@@ -41,10 +41,10 @@ const initialUsers = [
   },
 ];
 
-const getInitialUsers = async() => {
+const getInitialUsers = async () => {
   let users = [];
 
-  for(let i=0; i<initialUsers.length; i++){
+  for (let i = 0; i < initialUsers.length; i++) {
     const curr = initialUsers[i];
     const passwordHash = await bcrypt.hash(curr.password, 10);
     const user = {

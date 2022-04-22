@@ -1,6 +1,5 @@
 # things learnt in part4
 
-
 # part4(b) Testing the backend
 
 We will now start writing tests for the backend. Since the backend does not contain any complicated logic, it doesn't make sense to write unit tests for it. The only potential thing we could unit test is the `toJSON` method that is used for formatting notes.
@@ -35,6 +34,7 @@ There is a slight issue in the way that we have specified the mode of the applic
 `npm install --save-dev cross-env`
 
 We can then achieve cross-platform compatibility by using the cross-env library in our npm scripts defined in package.json:
+
 ```
 {
   // ...
@@ -47,17 +47,19 @@ We can then achieve cross-platform compatibility by using the cross-env library 
   // ...
 }
 ```
+
 To fix this, change cross-env to a production dependency by running this in the command line:
 
 `npm i cross-env -P`
 
 Let's make some changes to the module that defines the application's configuration:
+
 ```
 require('dotenv').config()
 
 const PORT = process.env.PORT
 
-const MONGODB_URI = process.env.NODE_ENV === 'test' 
+const MONGODB_URI = process.env.NODE_ENV === 'test'
   ? process.env.TEST_MONGODB_URI
   : process.env.MONGODB_URI
 

@@ -7,14 +7,15 @@ There are many different ways of testing React applications. Let's take a look a
 Tests will be implemented with the same [Jest](http://jestjs.io/) testing library developed by Facebook that was used in the previous part. Jest is actually configured by default to applications created with create-react-app.
 
 In addition to Jest, we also need another testing library that will help us render components for testing purposes. The current best option for this is [react-testing-library](https://github.com/testing-library/react-testing-library) which has seen rapid growth in popularity in recent times.
+
 ```
 npm install --save-dev @testing-library/react @testing-library/jest-dom
 ```
+
 [jest-dom](https://testing-library.com/docs/ecosystem-jest-dom/) that provides some nice Jest-related helper methods.
 
+---
 
-
-----------
 ## (a) Login in Frontend
 
 - conditional rendering
@@ -90,8 +91,9 @@ export default Togglable
 ```
 
 - References to components with ref
-    - [useRef](https://reactjs.org/docs/hooks-reference.html#useref), [forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref), [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
+  - [useRef](https://reactjs.org/docs/hooks-reference.html#useref), [forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref), [useImperativeHandle](https://reactjs.org/docs/hooks-reference.html#useimperativehandle)
 - PropTypes
+
 ```
 import PropTypes from 'prop-types'
 
@@ -104,18 +106,7 @@ Togglable.propTypes = {
 }
 ```
 
-
-
-
-
-
-
-
-
-
-----------
-
-
+---
 
 # Getting Started with Create React App
 

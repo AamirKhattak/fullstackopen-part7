@@ -2,9 +2,8 @@ import axios from 'axios';
 const baseUrl = '/api/login';
 
 const login = (userCredentials) => {
-
   const request = axios.post(baseUrl, userCredentials);
-  return request.then(response => response.data);
+  return request.then((response) => response.data);
 };
 
 export default { login };
