@@ -40,7 +40,7 @@ const Menu = () => {
       <Link style={padding} to="/users">
         users
       </Link>
-      {loggedInUser.name} logged in{' '}
+      {loggedInUser.name} ({loggedInUser.username}) logged in{' '}
       <button onClick={() => dispatch(logoutUser())}>logout</button>
     </div>
   );
@@ -72,16 +72,12 @@ const App = () => {
     dispatch(initializeUsers());
   }, []);
 
-  const onLogin = (userDetails) => {
-    setUser(userDetails);
-  };
-
   if (loggedInUser === null) {
     return (
       <div>
         <h1>Login into application</h1>
         <Notification />
-        <Login onLogin={onLogin} />
+        <Login />
       </div>
     );
   }
@@ -115,14 +111,6 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-      {/* <BlogView blog={blogs[0]} />
-      <UserBlogView user={users[0]} />
-      <UsersList users={users} />
-
-      <br />
-      <div className="blogs">
-        {blogs && blogs.map((blog) => <Blog key={blog.id} blog={blog} />)}
-      </div> */}
     </div>
   );
 };

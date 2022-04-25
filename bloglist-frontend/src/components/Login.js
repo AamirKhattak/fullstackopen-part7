@@ -13,8 +13,6 @@ export default function Login() {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      // const userToken = await loginService.login({ username, password });
-      // onLogin(userToken);
       dispatch(loginUser(username, password));
     } catch (error) {
       dispatch(setNotification('wrong username or password'));
