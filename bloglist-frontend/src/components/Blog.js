@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 
-const Blog = ({ blog, onBlogRemove, onBlogUpdate }) => {
+import { likeBlog, deleteBlog } from '../reducers/blogsReducers';
+import { useDispatch } from 'react-redux';
+import { setNotification } from '../reducers/notificationReducer';
+import { Link } from 'react-router-dom';
+
+const Blog = ({ blog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -9,6 +13,8 @@ const Blog = ({ blog, onBlogRemove, onBlogUpdate }) => {
     borderWidth: 1,
     marginBottom: 5,
   };
+
+  const dispatch = useDispatch();
 
   const [viewDetails, setViewDetails] = useState(false);
 
@@ -22,13 +28,21 @@ const Blog = ({ blog, onBlogRemove, onBlogUpdate }) => {
       user: blog.user.id,
       likes: blog.likes + 1,
     };
-    onBlogUpdate(updatedBlog);
+    try {
+      dispatch(likeBlog(updatedBlog.id, updatedBlog));
+    } catch (error) {
+      dispatch(setNotification(error.message));
+    }
   };
 
   const handleOnRemove = async () => {
     if (window.confirm(`Remove blog "${blog.title}" by "${blog.author}"`)) {
       //as usernames are unique, we can compare blog creator by username instead of userId
-      onBlogRemove(blog);
+      try {
+        dispatch(deleteBlog(blog.id));
+      } catch (error) {
+        dispatch(setNotification(error.message));
+      }
     }
   };
 
@@ -66,16 +80,10 @@ const Blog = ({ blog, onBlogRemove, onBlogUpdate }) => {
 
   return (
     <div className="blogStyle" style={blogStyle}>
-      {blog.title} {blog.author}
+      <Link to={`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
       <button onClick={toggleVisiblity}>view</button>
     </div>
   );
-};
-
-Blog.propTypes = {
-  blog: PropTypes.object.isRequired,
-  onBlogRemove: PropTypes.func.isRequired,
-  onBlogUpdate: PropTypes.func.isRequired,
 };
 
 export default Blog;

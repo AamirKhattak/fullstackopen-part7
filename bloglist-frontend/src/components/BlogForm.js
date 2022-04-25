@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
+import { createBlog } from '../reducers/blogsReducers';
 
-
-export default function BlogForm({ onBlogFormSubmit }) {
+export default function BlogForm() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [url, setURL] = useState('');
@@ -15,8 +14,13 @@ export default function BlogForm({ onBlogFormSubmit }) {
   const handleCreate = async (event) => {
     event.preventDefault();
     const newBlog = { title, author, url };
-    dispatch(setNotification(`a new blog "${title}" by "${author}" added.`));
-    onBlogFormSubmit(newBlog);
+    try {
+      dispatch(createBlog(newBlog));
+      dispatch(setNotification(`a new blog "${title}" by "${author}" added.`));
+    } catch (error) {
+      dispatch(setNotification(error.message));
+    }
+
     setTitle('');
     setAuthor('');
     setURL('');
@@ -66,8 +70,3 @@ export default function BlogForm({ onBlogFormSubmit }) {
     </div>
   );
 }
-
-BlogForm.propTypes = {
-  onBlogFormSubmit: PropTypes.func.isRequired,
-  handleNotification: PropTypes.func,
-};

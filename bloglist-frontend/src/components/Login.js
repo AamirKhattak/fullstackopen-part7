@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import blogsService from '../services/blogs';
-import loginService from '../services/login';
 
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
+import { loginUser } from '../reducers/userMngmntReducer';
 
-export default function Login({ onLogin }) {
+export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,10 +13,9 @@ export default function Login({ onLogin }) {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      const userToken = await loginService.login({ username, password });
-      onLogin(userToken);
-      window.localStorage.setItem('loggedInUser', JSON.stringify(userToken));
-      blogsService.setToken(userToken.token);
+      // const userToken = await loginService.login({ username, password });
+      // onLogin(userToken);
+      dispatch(loginUser(username, password));
     } catch (error) {
       dispatch(setNotification('wrong username or password'));
     }
