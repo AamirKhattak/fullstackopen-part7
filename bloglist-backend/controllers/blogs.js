@@ -24,6 +24,20 @@ blogRouter.get("/:id", async (request, response, next) => {
   }
 });
 
+blogRouter.post("/:id/comments", async (request, response, next) => {
+  const comments = request.body.comments;
+  const blogId = request.params.id;
+  if (!comments || !blogId) return response.status(400).end();
+  try {
+    const blog = await Blog.findById(blogId);
+    blog.comments = blog.comments.concat(comments);
+    await blog.save();
+    response.status(201).json(blog);
+  } catch (exception) {
+    next(exception);
+  }
+});
+
 blogRouter.post(
   "/",
   middleware.tokenExtractor,
@@ -47,9 +61,7 @@ blogRouter.post(
         likes: likes ? likes : 0,
         user: user.id,
       });
-
       const savedblog = await blog.save();
-
       user.blogs = user.blogs.concat(savedblog.id);
       await user.save();
 

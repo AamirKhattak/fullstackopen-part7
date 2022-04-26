@@ -6,6 +6,7 @@ export default function BlogView({ blogs }) {
   const blog = blogs.find((blog) => blog.id === blogId);
 
   if (!blog) return null;
+  console.log(blog.comments);
   return (
     <div>
       <h3>{blog.title}</h3>
@@ -16,6 +17,16 @@ export default function BlogView({ blogs }) {
         {blog.likes} likes <button>likes</button>
       </div>
       <div>added by {blog.author}</div>
+      <div>
+        <p>
+          <b>comments</b>
+        </p>
+        <ul>
+          {blog.comments &&
+            blog.comments.map((comment) => <li key={comment}>{comment}</li>)}
+          {blog.comments.length === 0 && <li>{'no comments added'}</li>}
+        </ul>
+      </div>
     </div>
   );
 }
