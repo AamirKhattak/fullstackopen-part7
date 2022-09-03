@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { likeBlog, deleteBlog } from '../reducers/blogsReducers';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
+import BlogCommentsForm from './BlogCommentsForm';
 
 // const Blog = ({ blog }) => {
 
@@ -77,6 +78,7 @@ export default function BlogView({ blogs }) {
         <p>
           <b>comments</b>
         </p>
+        <BlogCommentsForm blogId={blogId}/>
         <ul>
           {blog.comments &&
             blog.comments.map((comment) => <li key={comment}>{comment}</li>)}

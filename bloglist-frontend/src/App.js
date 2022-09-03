@@ -57,8 +57,6 @@ const App = () => {
     }
   );
 
-  console.log(blogs);
-
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser');
     if (loggedUserJSON) {
