@@ -8,17 +8,6 @@ export default function BlogCommentsForm({ blogId }) {
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
 
-  // const handleCreate = async (event) => {
-  //   event.preventDefault();
-  //   const newBlog = { title, author, url };
-  //   try {
-  //     dispatch(createBlog(newBlog));
-  //     dispatch(setNotification(`a new blog "${title}" by "${author}" added.`));
-  //   } catch (error) {
-  //     dispatch(setNotification(error.message));
-  //   }
-  // };
-
   const handleAddComment = () => {
     console.log(blogId, comment);
     // return;
