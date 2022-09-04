@@ -5,6 +5,7 @@ import { likeBlog, deleteBlog } from '../reducers/blogsReducers';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
 import BlogCommentsForm from './BlogCommentsForm';
+import { GreenButton } from '../styled-components/styled-components';
 
 // const Blog = ({ blog }) => {
 
@@ -66,7 +67,7 @@ export default function BlogView({ blogs }) {
         <a href={blog.url}>{blog.url}</a>
       </div>
       <div>
-        {blog.likes} likes <button onClick={handleOnLike}>likes</button>
+        {blog.likes} likes <GreenButton onClick={handleOnLike}>likes</GreenButton>
       </div>
       <div>added by {blog.author}</div>
       {checkIfUserIsCreatorOfBlog() && (

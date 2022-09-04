@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
 import { createBlog } from '../reducers/blogsReducers';
+import { GreenButton } from '../styled-components/styled-components';
 
 export default function BlogForm() {
   const [title, setTitle] = useState('');
@@ -63,9 +64,9 @@ export default function BlogForm() {
             onChange={({ target }) => setURL(target.value)}
           />
         </div>
-        <button id="create-btn" type="submit">
+        <GreenButton id="create-btn" type="submit">
           create
-        </button>
+        </GreenButton>
       </form>
     </div>
   );

@@ -25,6 +25,11 @@ import BlogsList from './components/BlogsList';
 import UserBlogView from './components/UserBlogView';
 import { initializeUsers } from './reducers/usersReducer';
 import BlogView from './components/BlogView';
+import {
+  RedButton,
+  Navigation,
+  Page,
+} from './styled-components/styled-components';
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -33,16 +38,22 @@ const Menu = () => {
     paddingRight: 5,
   };
   return (
-    <div style={{ backgroundColor: 'lightgray' }}>
-      <Link style={padding} to="/">
-        blogs
-      </Link>
-      <Link style={padding} to="/users">
-        users
-      </Link>
-      {loggedInUser.name} ({loggedInUser.username}) logged in{' '}
-      <button onClick={() => dispatch(logoutUser())}>logout</button>
-    </div>
+    <Navigation>
+      <div>
+        <Link style={padding} to="/">
+          blogs
+        </Link>
+        <Link style={padding} to="/users">
+          users
+        </Link>
+      </div>
+      <div>
+        {loggedInUser.name} ({loggedInUser.username}) logged in{' '}
+        <RedButton onClick={() => dispatch(logoutUser())}>
+          logout
+        </RedButton>
+      </div>
+    </Navigation>
   );
 };
 
@@ -83,7 +94,7 @@ const App = () => {
   if (!blogs) return <div>loading</div>;
 
   return (
-    <div>
+    <Page>
       <Menu />
       <h2>blogs app</h2>
       <Notification />
@@ -109,7 +120,7 @@ const App = () => {
           </Route>
         </Switch>
       </div>
-    </div>
+    </Page>
   );
 };
 

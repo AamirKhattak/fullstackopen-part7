@@ -4,6 +4,7 @@ import { likeBlog, deleteBlog } from '../reducers/blogsReducers';
 import { useDispatch } from 'react-redux';
 import { setNotification } from '../reducers/notificationReducer';
 import { Link } from 'react-router-dom';
+import { BlueButton, GreenButton, RedButton } from '../styled-components/styled-components';
 
 const Blog = ({ blog }) => {
   const blogStyle = {
@@ -61,12 +62,12 @@ const Blog = ({ blog }) => {
     return (
       <div style={blogStyle} className="blogStyle">
         <p>
-          {blog.title} <button onClick={toggleVisiblity}>hide</button>
+          {blog.title} <RedButton onClick={toggleVisiblity}>hide</RedButton>
         </p>
         <p>{blog.url}</p>
         <p className="likes">
           <span>{blog.likes}</span>
-          <button onClick={handleOnLike}>like</button>
+          <GreenButton onClick={handleOnLike}>like</GreenButton>
         </p>
         <p>{blog.author}</p>
         {checkIfUserIsCreatorOfBlog() && (
@@ -81,7 +82,7 @@ const Blog = ({ blog }) => {
   return (
     <div className="blogStyle" style={blogStyle}>
       <Link to={`/blogs/${blog.id}`}>{blog.title} {blog.author}</Link>
-      <button onClick={toggleVisiblity}>view</button>
+      <BlueButton onClick={toggleVisiblity}>view</BlueButton>
     </div>
   );
 };
